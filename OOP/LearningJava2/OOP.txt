@@ -1,0 +1,28 @@
+Here is a list of all the classes with their corresponding atributes
+
+1. Event (Base class)
+- int id – unique identifier of the event
+- String description – description or title of the event
+- LocalTime time – time when the event takes place
+- Location location – the place where the event occurs
+
+2. Concert (child of Event)
+- String artist – performing artist or band
+- boolean seated – indicates whether the concert has seating or standing places
+
+3. Conference
+- String name – name of the conference
+- String professor – speaker or lecturer
+- boolean hasCatering – indicates if catering is provided
+
+4. Locaiton
+- int id – unique identifier of the location
+- String city – city name
+- String street – street name
+- int number – street number
+- List<Seat> seats – list of available seats at the location
+
+5. Seat
+- int id – unique seat identifier
+- int row – seat row number
+- int column – seat column number
