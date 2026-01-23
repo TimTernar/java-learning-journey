@@ -16,6 +16,7 @@ public class Main {
         UM.addSeat(new Seat(3, 1, 3));
 
         //test
+        User u = new User(1, "Tim", "Ternar", 22);
 
         Concert concert = new Concert(1, "Rock concert in Stožice", LocalTime.now(), stozice, "Parni Valjak", "Rock", true, 120);
         Conference conference = new Conference(1, "Conference about Java and memory optimizazion", LocalTime.now(), stozice, "Do better with Java", "Walter White", true);
