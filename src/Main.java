@@ -15,7 +15,7 @@ public class Main {
         UM.addSeat(new Seat(2, 1, 2));
         UM.addSeat(new Seat(3, 1, 3));
 
-        //something
+        //test
 
         Concert concert = new Concert(1, "Rock concert in Stožice", LocalTime.now(), stozice, "Parni Valjak", "Rock", true, 120);
         Conference conference = new Conference(1, "Conference about Java and memory optimizazion", LocalTime.now(), stozice, "Do better with Java", "Walter White", true);
