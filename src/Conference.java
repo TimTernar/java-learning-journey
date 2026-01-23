@@ -8,9 +8,9 @@ public class Conference extends Event{
 
     private boolean hasCatering;
 
-    public Conference(int id, String description, LocalTime time, Location location, String name, String professor, boolean hasCatering)
+    public Conference(int id, String description, LocalTime time, Location location, double price, String name, String professor, boolean hasCatering)
     {
-        super(id, description, time, location);
+        super(id, description, time, location, price);
         this.name = name;
         this.professor = professor;
         this.hasCatering = hasCatering;

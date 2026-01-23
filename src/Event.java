@@ -1,6 +1,6 @@
 import java.time.LocalTime;
 
-public class Event {
+public abstract class Event {
 
     private int id;
 
@@ -10,12 +10,15 @@ public class Event {
 
     private Location location;
 
-    public Event(int id, String description, LocalTime time, Location location)
+    private double price;
+
+    public Event(int id, String description, LocalTime time, Location location, double price)
     {
         this.id = id;
         this.description = description;
         this.time = time;
         this.location = location;
+        this.price = price;
     }
 
     public int getId()
@@ -38,8 +41,10 @@ public class Event {
         return location;
     }
 
+    public double getPrice() {return price; }
+
     @Override
     public String toString() {
-        return "---------------------\n" + "Event ID: " + id + "\nDescription: " + description + "\nTime: " + time + "\nLocation:\n" + location;
+        return "---------------------\n" + "Event ID: " + id + "\nDescription: " + description + "\nTime: " + time + "\nLocation:\n" + location + "\nPrice:\n" + price  ;
     }
 }

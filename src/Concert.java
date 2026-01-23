@@ -10,9 +10,9 @@ public class Concert extends Event {
 
     private int durationMinutes;
 
-    public Concert(int id, String description, LocalTime time, Location location, String artist, String genre, boolean seated, int durationMinutes)
+    public Concert(int id, String description, LocalTime time, Location location, double price, String artist, String genre, boolean seated, int durationMinutes)
     {
-        super(id, description, time, location);
+        super(id, description, time, location, price);
         this.artist = artist;
         this.genre = genre;
         this.seated = seated;

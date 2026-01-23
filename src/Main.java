@@ -18,8 +18,8 @@ public class Main {
         //test
         User u = new User(1, "Tim", "Ternar", 22);
 
-        Concert concert = new Concert(1, "Rock concert in Stožice", LocalTime.now(), stozice, "Parni Valjak", "Rock", true, 120);
-        Conference conference = new Conference(1, "Conference about Java and memory optimizazion", LocalTime.now(), stozice, "Do better with Java", "Walter White", true);
+        Concert concert = new Concert(1, "Rock concert in Stožice", LocalTime.now(), stozice, 18.50,"Parni Valjak", "Rock", true, 120);
+        Conference conference = new Conference(1, "Conference about Java and memory optimizazion", LocalTime.now(), stozice,5.50 ,"Do better with Java", "Walter White", true);
 
 
         System.out.println(concert);

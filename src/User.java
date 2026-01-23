@@ -1,3 +1,8 @@
+enum Category
+{
+    bronze,silver,gold
+}
+
 public class User {
     private int Id;
 
@@ -6,6 +11,10 @@ public class User {
     private String LastName;
 
     private int Age;
+
+    public Category category;
+
+
 
     public User(int Id, String FirstName, String LastName, int Age)
     {
