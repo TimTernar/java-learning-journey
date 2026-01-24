@@ -1,28 +1,34 @@
-import java.time.LocalTime;
+void main() {
 
-public class Main {
+    Location stozice = new Location(1, "Ljubljana", "Vojkova street", 500);
+    Location UM = new Location(2, "Maribor", "Koroška street", 100);
 
-    public static void main(String[] args) {
+    stozice.addSeat(new Seat(1, 1, 1));
+    stozice.addSeat(new Seat(2, 1, 2));
+    stozice.addSeat(new Seat(3, 1, 3));
 
-        Location stozice = new Location(1, "Ljubljana", "Vojkova street", 500);
-        Location UM = new Location(2, "Maribor", "Koroška street", 100);
+    UM.addSeat(new Seat(1, 1, 1));
+    UM.addSeat(new Seat(2, 1, 2));
+    UM.addSeat(new Seat(3, 1, 3));
 
-        stozice.addSeat(new Seat(1, 1, 1));
-        stozice.addSeat(new Seat(2, 1, 2));
-        stozice.addSeat(new Seat(3, 1, 3));
+    //test
+    //User u = new User(1, "Tim", "Ternar", 22);
 
-        UM.addSeat(new Seat(1, 1, 1));
-        UM.addSeat(new Seat(2, 1, 2));
-        UM.addSeat(new Seat(3, 1, 3));
+    Concert concert = new Concert(1, "Rock concert in Stožice", LocalTime.now(), stozice, 18.50, "Parni Valjak", "Rock", true, 120);
+    Conference conference = new Conference(1, "Conference about Java and memory optimizazion", LocalTime.now(), stozice, 5.50, "Do better with Java", "Walter White", true);
 
-        //test
-        User u = new User(1, "Tim", "Ternar", 22);
+    //added organization
+    Organization eventim = new Organization();
 
-        Concert concert = new Concert(1, "Rock concert in Stožice", LocalTime.now(), stozice, 18.50,"Parni Valjak", "Rock", true, 120);
-        Conference conference = new Conference(1, "Conference about Java and memory optimizazion", LocalTime.now(), stozice,5.50 ,"Do better with Java", "Walter White", true);
+    eventim.AddEvent(concert, 1);
+    eventim.AddEvent(conference, 2);
 
+    System.out.println("--------------------------");
+    System.out.println("All events listed :");
+    eventim.ListAllEvents();
+    eventim.RemoveEvent(2);
+    System.out.println("--------------------------");
+    System.out.println("All events listed :");
+    eventim.ListAllEvents();
 
-        System.out.println(concert);
-        System.out.println(conference);
-    }
 }
