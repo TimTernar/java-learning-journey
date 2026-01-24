@@ -2,7 +2,16 @@
 This is my journey on learning java from scratch
 
 Background:
-I have about 3 years of c# expiriences, with a lot of LLM help along the way. I want to learn from the ground up to get the true expirience of being a developer. I start with OOP and work upwards. So far i have done
+I have about 3 years of c# expiriences, with a lot of LLM help along the way. I want to learn from the ground up to get the true expirience of being a developer. I’m intentionally starting with core OOP concepts and progressing step by step toward more advanced topics
 
-1. OOP basics
-2. Basic manipulation (CSV, lambda) //coming soon
+Progress so far :
+1. OOP basics:
+   - Classes
+   - Inheritance
+   - Interfaces
+   - Collections
+   - Seperation of resposibilities
+2. Basic data manipulation (CSV, lambda) //coming soon
+   -Lamdas
+   - Work with basic CSV
+   - Iterating and transforming collections
