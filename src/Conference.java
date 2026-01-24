@@ -21,4 +21,8 @@ public class Conference extends Event{
     {
         return super.toString() + "\nName: " + name + "\nProfessor: " + professor + "\nCatering: " + (hasCatering ? "Yes" : "No");
     }
+
+    public void AdjustPrice(User user)
+    {
+    }
 }
