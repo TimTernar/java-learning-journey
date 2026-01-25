@@ -32,8 +32,8 @@ void main() {
     System.out.println("All events listed :");
     eventim.ListAllEvents();
 
-    //list of conferences i just made
-    ArrayList<Conference> conferences = new ArrayList<Conference>();
+    //list of conferences I just made
+    ArrayList<Conference> conferences = new ArrayList<>();
     conferences.add(conference);
     conferences.add(conference2);
 

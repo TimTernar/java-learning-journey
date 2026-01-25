@@ -2,15 +2,15 @@ import java.time.LocalTime;
 
 public abstract class Event {
 
-    private int id;
+    private final int id;
 
-    private String description;
+    private final String description;
 
-    private LocalTime time;
+    private final LocalTime time;
 
-    private Location location;
+    private final Location location;
 
-    private double price;
+    private final double price;
 
     public Event(int id, String description, LocalTime time, Location location, double price)
     {
