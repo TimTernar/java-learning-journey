@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+
 interface IOrganization
 {
     void AddEvent(Event e, Integer eventId);

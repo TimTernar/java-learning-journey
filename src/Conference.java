@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Comparator;
+
 
 public class Conference extends Event {
 
@@ -88,6 +91,22 @@ public class Conference extends Event {
 
         return conferences;
     }
+
+    public static List<String> getAllDescrption(ArrayList<Conference> conferences)
+    {
+        return conferences.stream().map(Conference::getDescription).toList();
+    }
+
+    public static String getDescriptionById(ArrayList<Conference> conferences, int id)
+    {
+        return conferences.stream().filter(c -> c.getId() == id).map(Conference::getDescription).findFirst().orElse(null);
+    }
+
+    public static List<Conference> getByProfessor(ArrayList<Conference> conferences, String professor)
+    {
+        return conferences.stream().filter(c -> c.getProfessor().equalsIgnoreCase(professor)).toList();
+    }
+
 
 
 }
