@@ -32,4 +32,8 @@ public class Location {
         return   id + ", "  + city + ", " + street + " " + number + "\nSeats: " + seats.size();
     }
 
+    public int getId()
+    {
+        return id;
+    }
 }
