@@ -2,13 +2,13 @@ import java.time.LocalTime;
 
 public class Concert extends Event {
 
-    private String artist;
+    private final String artist;
 
-    private String genre;
+    private final String genre;
 
-    private boolean seated;
+    private final boolean seated;
 
-    private int durationMinutes;
+    private final int durationMinutes;
 
     public Concert(int id, String description, LocalTime time, Location location, double price, String artist, String genre, boolean seated, int durationMinutes)
     {

@@ -3,15 +3,15 @@ import java.util.List;
 
 public class Location {
 
-    private int id;
+    private final int id;
 
-    private String city;
+    private final String city;
 
-    private String street;
+    private final String street;
 
-    private int number;
+    private final int number;
 
-    private List<Seat> seats;
+    private final List<Seat> seats;
 
     public Location(int id, String city, String street, int number)
     {
@@ -29,7 +29,7 @@ public class Location {
     @Override
     public String toString()
     {
-        return city + ", " + street + " " + number + "\nSeats: " + seats.size();
+        return   id + ", "  + city + ", " + street + " " + number + "\nSeats: " + seats.size();
     }
 
 }

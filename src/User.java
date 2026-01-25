@@ -4,30 +4,31 @@ enum Category
 }
 
 public class User {
-    private int Id;
+    private final int Id;
 
-    private String FirstName;
+    private final String FirstName;
 
-    private String LastName;
+    private final String LastName;
 
-    private int Age;
+    private final int Age;
 
-    public Category category;
+    private final Category category;
 
 
 
-    public User(int Id, String FirstName, String LastName, int Age)
+    public User(int Id, String FirstName, String LastName, int Age, Category category)
     {
         this.Id = Id;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.Age = Age;
+        this.category = category;
     }
 
     @Override
     public String toString()
     {
-        return super.toString() + "\nFirst Name: " + FirstName + "\nLast Name: " + LastName + "\nAge: " + Age;
+        return super.toString() + "\nFirst Name: " + FirstName + "\nLast Name: " + LastName + "\nAge: " + Age + "\nCategory :" + category;
     }
 
 }

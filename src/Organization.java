@@ -12,7 +12,7 @@ interface IOrganization
 
 public class Organization implements IOrganization{
     //because dictionary is an abstract class you cannot instance it in java, unlike in c#, so hashmap is used in java
-    private Map<Integer, Event> events = new HashMap<>();
+    private final Map<Integer, Event> events = new HashMap<>();
 
     public void AddEvent(Event e, Integer eventId)
     {

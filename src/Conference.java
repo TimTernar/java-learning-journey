@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Conference extends Event{
 
-    private String name;
+    private final String name;
 
-    private String professor;
+    private final String professor;
 
-    private boolean hasCatering;
+    private final boolean hasCatering;
 
     public Conference(int id, String description, LocalTime time, Location location, double price, String name, String professor, boolean hasCatering)
     {
@@ -49,25 +49,19 @@ public class Conference extends Event{
             fileWriter.append(String.join(";", headers));
             fileWriter.append("\n");
 
-            for (Event e : conferences)
-            {
-                fileWriter.append(e.getId() + ";");
-                fileWriter.append(e.getDescription() +";");
-                fileWriter.append(e.getTime() + ";");
-                fileWriter.append(e.getLocation() + ";");
-                fileWriter.append(e.getPrice() + ";");
-
-                if (e instanceof Conference c) {
-                    fileWriter.append(c.getName() + ";");
-                    fileWriter.append(c.getProfessor() + ";");
-                    fileWriter.append(c.returnCatering() + "\n");
-                } else {
-                    fileWriter.append(";;;"+ "\n");
-                }
+            for (Conference c : conferences) {
+                fileWriter.append(String.valueOf(c.getId())).append(';');
+                fileWriter.append(c.getDescription()).append(';');
+                fileWriter.append(c.getTime().toString()).append(';');
+                fileWriter.append(c.getLocation().toString()).append(';');
+                fileWriter.append(String.valueOf(c.getPrice())).append(';');
+                fileWriter.append(c.getName()).append(';');
+                fileWriter.append(c.getProfessor()).append(';');
+                fileWriter.append(c.returnCatering()).append('\n');
             }
         }
         catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Failed to write conference CSV: " + e.getMessage());
         }
     }
 
