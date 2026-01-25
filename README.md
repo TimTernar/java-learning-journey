@@ -11,7 +11,6 @@ Progress so far :
    - Interfaces
    - Collections
    - Seperation of resposibilities
-2. Basic data manipulation (CSV, lambda) //coming soon
-   -Lamdas
-   - Work with basic CSV
-   - Iterating and transforming collections
+2. Basic data manipulation (CSV, lambda)
+   - Writing and reading CSV
+   - use of lambda //soon
