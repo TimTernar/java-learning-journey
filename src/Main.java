@@ -53,6 +53,4 @@ void main() {
     // 4) By name
     List<Conference> byName = Conference.getByName(conferences, "Michael Carrick is the saviour");
     byName.forEach(System.out::println);
-
-
 }

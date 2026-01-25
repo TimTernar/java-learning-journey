@@ -5,8 +5,14 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Comparator;
 
+class InvalidCsvException extends Exception
+{
+    public InvalidCsvException(String m)
+    {
+        super(m);
+    }
+}
 
 public class Conference extends Event {
 
@@ -58,7 +64,7 @@ public class Conference extends Event {
                 fileWriter.append(c.returnCatering()).append('\n');
             }
         } catch (IOException e) {
-            System.err.println("Failed to write conference CSV: " + e.getMessage());
+            System.out.println("Caught Exception: " + e.getMessage());
         }
     }
 
