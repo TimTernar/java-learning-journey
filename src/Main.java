@@ -16,6 +16,7 @@ void main() {
 
     Concert concert = new Concert(1, "Rock concert in Stožice", LocalTime.now(), stozice, 18.50, "Parni Valjak", "Rock", true, 120);
     Conference conference = new Conference(1, "Conference about Java and memory optimizazion", LocalTime.now(), stozice, 5.50, "Do better with Java", "Walter White", true);
+    Conference conference2 = new Conference(3, "Why Manchaster United is finally back", LocalTime.now(), stozice, 4.50, "Michael Carrick is the saviour", "Tim Ternar", true);
 
     //added organization
     Organization eventim = new Organization();
@@ -30,5 +31,12 @@ void main() {
     System.out.println("--------------------------");
     System.out.println("All events listed :");
     eventim.ListAllEvents();
+
+    //list of conferences i just made
+    ArrayList<Conference> conferences = new ArrayList<Conference>();
+    conferences.add(conference);
+    conferences.add(conference2);
+
+    Conference.writeConference("conferences.csv", conferences);
 
 }
