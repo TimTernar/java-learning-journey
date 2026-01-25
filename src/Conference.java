@@ -107,7 +107,10 @@ public class Conference extends Event {
         return conferences.stream().filter(c -> c.getProfessor().equalsIgnoreCase(professor)).toList();
     }
 
-
+    public static List<Conference> getByName(ArrayList<Conference> conferences, String name)
+    {
+        return conferences.stream().filter(c -> c.getName().equalsIgnoreCase(name)).toList();
+    }
 
 }
 
