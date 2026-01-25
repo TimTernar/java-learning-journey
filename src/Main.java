@@ -39,4 +39,20 @@ void main() {
 
     Conference.writeConference("conferences.csv", conferences);
 
+    List<String> descriptions = Conference.getAllDescrption(conferences);
+    System.out.println(descriptions);
+
+    // 2) Description by id
+    String desc = Conference.getDescriptionById(conferences, 3);
+    System.out.println(desc);
+
+    // 3) By professor
+    List<Conference> byProf = Conference.getByProfessor(conferences, "Tim Ternar");
+    byProf.forEach(System.out::println);
+
+    // 4) By name
+    List<Conference> byName = Conference.getByName(conferences, "Michael Carrick is the saviour");
+    byName.forEach(System.out::println);
+
+
 }

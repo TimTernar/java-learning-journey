@@ -111,7 +111,6 @@ public class Conference extends Event {
     {
         return conferences.stream().filter(c -> c.getName().equalsIgnoreCase(name)).toList();
     }
-
 }
 
 
