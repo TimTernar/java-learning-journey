@@ -50,10 +50,14 @@ public class Conference extends Event {
         String[] headers = {"Id", "Description", "Time", "Location", "Price", "Name", "Professor", "Catering included?"};
 
         try (FileWriter fileWriter = new FileWriter(filepath)) {
-            fileWriter.append(String.join(";", headers));
-            fileWriter.append("\n");
+
+            fileWriter.append(String.join(";", headers)).append('\n');
 
             for (Conference c : conferences) {
+                if (c.getName().contains(";") || c.getProfessor().contains(";")) {
+                    throw new InvalidCsvException("Field contains ';' which breaks CSV: " + c.getId());
+                }
+
                 fileWriter.append(String.valueOf(c.getId())).append(';');
                 fileWriter.append(c.getDescription()).append(';');
                 fileWriter.append(c.getTime().toString()).append(';');
@@ -63,8 +67,11 @@ public class Conference extends Event {
                 fileWriter.append(c.getProfessor()).append(';');
                 fileWriter.append(c.returnCatering()).append('\n');
             }
+
+        } catch (InvalidCsvException e) {
+            System.out.println("Invalid CSV: " + e.getMessage());
         } catch (IOException e) {
-            System.out.println("Caught Exception: " + e.getMessage());
+            System.out.println("IO error: " + e.getMessage());
         }
     }
 
