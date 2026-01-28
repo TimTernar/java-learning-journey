@@ -70,4 +70,10 @@ void main() {
     List<Concert> byArtist = Concert.getByArtist(concerts, "Bajaga i Instruktori");
     byArtist.forEach(System.out::println);
 
+    //3) return concerts by duration
+    //will return concert1
+    List<Concert> byDuration = Concert.getByDuration(concerts,  120);
+    byDuration.forEach(System.out::println);
+
+
 }

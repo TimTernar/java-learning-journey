@@ -34,26 +34,6 @@ public class Concert extends Event {
         return super.toString() + "\nArtist: " + artist + "\nGenre: " + genre + "\nSeated: " + (seated ? "Yes" : "No") + "\nDuration: " + durationMinutes + " minutes";
     }
 
-    public static List<String> getAllName(ArrayList<Concert> concerts)
-    {
-        return concerts.stream().map(Concert::getArtist).toList();
-    }
-
-    public static List<String> getAllGenre(ArrayList<Concert> concerts)
-    {
-        return concerts.stream().map(Concert::getGerne).toList();
-    }
-
-    public static List<Integer> geduration(ArrayList<Concert> concerts)
-    {
-        return concerts.stream().map(Concert::getDuration).toList();
-    }
-
-    public static List<String> getAllSeated(ArrayList<Concert> concerts)
-    {
-        return concerts.stream().map(Concert::getSeated).toList();
-    }
-
     public static List<Concert> getByGnere(ArrayList<Concert> concerts, String genre)
     {
         return concerts.stream().filter(c -> c.getGerne().equalsIgnoreCase(genre)).toList();
@@ -62,5 +42,10 @@ public class Concert extends Event {
     public static List<Concert> getByArtist(ArrayList<Concert> concerts, String artist)
     {
         return concerts.stream().filter(c -> c.getArtist().equalsIgnoreCase(artist)).toList();
+    }
+
+    public static List<Concert> getByDuration(ArrayList<Concert> concerts, Integer durationMinutes)
+    {
+        return concerts.stream().filter(c -> c.getDuration() == durationMinutes).toList();
     }
 }
