@@ -66,4 +66,8 @@ void main() {
     List<Concert> returnGenres = Concert.getByGnere(concerts, "Rock");
     returnGenres.forEach(System.out::println);
 
+    //2) return concerts from particual artist
+    List<Concert> byArtist = Concert.getByArtist(concerts, "Bajaga i Instruktori");
+    byArtist.forEach(System.out::println);
+
 }

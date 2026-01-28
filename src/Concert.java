@@ -58,4 +58,9 @@ public class Concert extends Event {
     {
         return concerts.stream().filter(c -> c.getGerne().equalsIgnoreCase(genre)).toList();
     }
+
+    public static List<Concert> getByArtist(ArrayList<Concert> concerts, String artist)
+    {
+        return concerts.stream().filter(c -> c.getArtist().equalsIgnoreCase(artist)).toList();
+    }
 }
