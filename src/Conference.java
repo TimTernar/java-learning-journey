@@ -54,14 +54,23 @@ public class Conference extends Event {
             fileWriter.append(String.join(";", headers)).append('\n');
 
             for (Conference c : conferences) {
-                if (c.getName().contains(";") || c.getProfessor().contains(";")) {
+
+                String location = c.getLocation().toString()
+                        .replace("\r\n", " | ")
+                        .replace("\n", " | ")
+                        .replace("\r", " | ");
+
+                if (c.getDescription().contains(";") ||
+                        location.contains(";") ||
+                        c.getName().contains(";") ||
+                        c.getProfessor().contains(";")) {
                     throw new InvalidCsvException("Field contains ';' which breaks CSV: " + c.getId());
                 }
 
                 fileWriter.append(String.valueOf(c.getId())).append(';');
                 fileWriter.append(c.getDescription()).append(';');
                 fileWriter.append(c.getTime().toString()).append(';');
-                fileWriter.append(c.getLocation().toString()).append(';');
+                fileWriter.append(location).append(';');
                 fileWriter.append(String.valueOf(c.getPrice())).append(';');
                 fileWriter.append(c.getName()).append(';');
                 fileWriter.append(c.getProfessor()).append(';');
@@ -75,6 +84,7 @@ public class Conference extends Event {
         }
     }
 
+
     public static ArrayList<Conference> ReadConference(String filepath)
     {
         ArrayList<Conference> conferences = new ArrayList<>();
@@ -86,24 +96,52 @@ public class Conference extends Event {
 
             while((line = br.readLine()) != null)
             {
-                String [] parts = line.split(";");
+                String[] parts = line.split(";", -1);
 
-                int id = Integer.parseInt(parts[0]);
-                String description = parts[1];
+                int id = Integer.parseInt(parts[0].trim());
+                String description = parts[1].trim();
                 LocalTime time = LocalTime.parse(parts[2].trim());
+
+                String locationRaw = parts[3].trim()
+                        .replace(" | ", System.lineSeparator());
                 double price = Double.parseDouble(parts[4].trim());
                 String name = parts[5].trim();
                 String professor = parts[6].trim();
-                boolean catering = Boolean.parseBoolean(parts[7].trim());
+                String cateringRaw = parts[7].trim();
+                boolean catering = cateringRaw.equalsIgnoreCase("yes") || cateringRaw.equalsIgnoreCase("true");
+                Location location = parseLocationFromCsv(locationRaw);
+
+                Conference c = new Conference(id, description, time, location, price, name, professor, catering);
+                conferences.add(c);
             }
         }
         catch (IOException e)
         {
-        System.err.println("Failed to write conference CSV: " + e.getMessage());
+            System.err.println("Failed to read conference CSV: " + e.getMessage());
         }
 
         return conferences;
     }
+
+
+    //since location is a object inside of A object we need to parse it out
+    private static Location parseLocationFromCsv(String locationRaw) {
+        String[] lines = locationRaw.split("\\R");
+        String firstLine = lines[0].trim();
+
+        String[] main = firstLine.split(",", 3);
+        int locId = Integer.parseInt(main[0].trim());
+        String city = main[1].trim();
+
+        String streetAndNo = main[2].trim();
+        int lastSpace = streetAndNo.lastIndexOf(' ');
+        String street = (lastSpace >= 0) ? streetAndNo.substring(0, lastSpace).trim() : streetAndNo;
+        int number = (lastSpace >= 0) ? Integer.parseInt(streetAndNo.substring(lastSpace + 1).trim()) : 0;
+
+        return new Location(locId, city, street, number);
+    }
+
+
 
     public static List<String> getAllDescrption(ArrayList<Conference> conferences)
     {

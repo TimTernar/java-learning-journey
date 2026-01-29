@@ -75,5 +75,8 @@ void main() {
     List<Concert> byDuration = Concert.getByDuration(concerts,  120);
     byDuration.forEach(System.out::println);
 
+    //read the conferences
+    ArrayList<Conference> loaded = Conference.ReadConference("conferences.csv");
+    loaded.forEach(System.out::println);
 
 }
