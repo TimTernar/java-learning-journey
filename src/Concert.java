@@ -77,7 +77,7 @@ public class Concert extends Event {
                 fileWriter.append(c.getGerne()).append(";");
                 fileWriter.append(c.getSeated()).append(";");
                 //changes int to String so it can be written into csv document or something
-                fileWriter.append(Integer.toString(c.getDuration())).append(";");
+                fileWriter.append(Integer.toString(c.getDuration())).append("\n");
             }
         }
         catch (IOException e)
