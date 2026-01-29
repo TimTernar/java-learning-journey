@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,5 +49,38 @@ public class Concert extends Event {
     public static List<Concert> getByDuration(ArrayList<Concert> concerts, Integer durationMinutes)
     {
         return concerts.stream().filter(c -> c.getDuration() == durationMinutes).toList();
+    }
+
+    public static void writeConcert(String filepath, ArrayList<Concert> concerts)
+    {
+        String[] headers = {"Id", "Description", "Time", "Location", "Price", "Locaiton", "Artist", "Genre", "Seated?", "Duration in Minutes"};
+
+        try (FileWriter fileWriter = new FileWriter(filepath))
+        {
+            fileWriter.append(String.join(";", headers)).append('\n');
+
+            for (Concert c : concerts)
+            {
+                String location = c.getLocation().toString()
+                        .replace("\r\n", " | ")
+                        .replace("\n", " | ")
+                        .replace("\r", " | ");
+
+                fileWriter.append(String.valueOf(c.getId())).append(';');
+                fileWriter.append(c.getDescription()).append(';');
+                fileWriter.append(c.getTime().toString()).append(';');
+                fileWriter.append(location).append(';');
+                fileWriter.append(String.valueOf(c.getPrice())).append(';');
+                fileWriter.append(c.getArtist()).append(";");
+                fileWriter.append(c.getGerne()).append(";");
+                fileWriter.append(c.getSeated()).append(";");
+                //changes int to String so it can be written into csv document or something
+                fileWriter.append(Integer.toString(c.getDuration())).append(";");
+            }
+        }
+        catch (IOException e)
+        {
+            System.out.println("IO error: " + e.getMessage());
+        }
     }
 }

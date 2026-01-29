@@ -79,4 +79,7 @@ void main() {
     ArrayList<Conference> loaded = Conference.ReadConference("conferences.csv");
     loaded.forEach(System.out::println);
 
+    //writing concerts into csv
+    Concert.writeConcert("concerts.csv", concerts);
+
 }
