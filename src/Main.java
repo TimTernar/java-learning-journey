@@ -82,4 +82,8 @@ void main() {
     //writing concerts into csv
     Concert.writeConcert("concerts.csv", concerts);
 
+    ArrayList<Concert> loaded2 = Concert.ReadConcert("concerts.csv");
+    loaded2.forEach(System.out::println);
+
+
 }

@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalTime;
@@ -83,4 +85,59 @@ public class Concert extends Event {
             System.out.println("IO error: " + e.getMessage());
         }
     }
+
+    public static ArrayList<Concert> ReadConcert(String filepath)
+    {
+        ArrayList<Concert> concerts = new ArrayList<>();
+
+        try(BufferedReader br = new BufferedReader(new FileReader(filepath)))
+        {
+            String line;
+            br.readLine();
+
+            while((line = br.readLine()) != null)
+            {
+                String[] parts = line.split(";", -1);
+
+                int id = Integer.parseInt(parts[0].trim());
+                String description = parts[1].trim();
+                LocalTime time = LocalTime.parse(parts[2].trim());
+                String locationRaw = parts[3].trim().replace(" | ", System.lineSeparator());
+                Location location = parseLocationFromCsv(locationRaw);
+                double price = Double.parseDouble(parts[4].trim());
+                String artist = parts[5].trim();
+                String genre = parts[6].trim();
+                String seatedRaw = parts[7].trim();
+                boolean seated = seatedRaw.equalsIgnoreCase("yes") || seatedRaw.equalsIgnoreCase("true");
+
+                int durationMinutes = Integer.parseInt(parts[8].trim());
+
+                Concert c = new Concert(id, description, time, location, price, artist, genre, seated, durationMinutes);
+                concerts.add(c);
+            }
+
+        }catch (IOException e)
+        {
+            System.err.println("Failed to read concert CSV: " + e.getMessage());
+        }
+
+        return concerts;
+    }
+
+    private static Location parseLocationFromCsv(String locationRaw) {
+        String[] lines = locationRaw.split("\\R");
+        String firstLine = lines[0].trim();
+
+        String[] main = firstLine.split(",", 3);
+        int locId = Integer.parseInt(main[0].trim());
+        String city = main[1].trim();
+
+        String streetAndNo = main[2].trim();
+        int lastSpace = streetAndNo.lastIndexOf(' ');
+        String street = (lastSpace >= 0) ? streetAndNo.substring(0, lastSpace).trim() : streetAndNo;
+        int number = (lastSpace >= 0) ? Integer.parseInt(streetAndNo.substring(lastSpace + 1).trim()) : 0;
+
+        return new Location(locId, city, street, number);
+    }
+
 }
