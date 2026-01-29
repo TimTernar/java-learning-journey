@@ -13,4 +13,6 @@ Progress so far :
    - Seperation of resposibilities
 2. Basic data manipulation (CSV, lambda)
    - Writing and reading CSV
-   - use of lambda //soon
+   - use of lambda
+   - use of exception //just one for now
+   - events //soon
