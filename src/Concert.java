@@ -6,6 +6,14 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+class InvalidCsvExceptionConcert extends Exception
+{
+    public InvalidCsvExceptionConcert (String m)
+    {
+        super(m);
+    }
+}
+
 public class Concert extends Event {
 
     private final String artist;
@@ -63,10 +71,21 @@ public class Concert extends Event {
 
             for (Concert c : concerts)
             {
+                if (c == null) {
+                    throw new InvalidCsvExceptionConcert("Concert entry is null in list");
+                }
+
                 String location = c.getLocation().toString()
                         .replace("\r\n", " | ")
                         .replace("\n", " | ")
                         .replace("\r", " | ");
+
+                if (c.getDescription().contains(";") ||
+                        location.contains(";") ||
+                        c.getArtist().contains(";") ||
+                        c.getGerne().contains(";")) {
+                    throw new InvalidCsvExceptionConcert("Field contains ';' which breaks CSV: " + c.getId());
+                }
 
                 fileWriter.append(String.valueOf(c.getId())).append(';');
                 fileWriter.append(c.getDescription()).append(';');
@@ -80,10 +99,15 @@ public class Concert extends Event {
                 fileWriter.append(Integer.toString(c.getDuration())).append("\n");
             }
         }
+        catch (InvalidCsvExceptionConcert e)
+        {
+            System.out.println("Invalid CSV: " + e.getMessage());
+        }
         catch (IOException e)
         {
             System.out.println("IO error: " + e.getMessage());
         }
+
     }
 
     public static ArrayList<Concert> ReadConcert(String filepath)
