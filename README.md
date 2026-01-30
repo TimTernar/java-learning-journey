@@ -14,5 +14,5 @@ Progress so far :
 2. Basic data manipulation (CSV, lambda)
    - Writing and reading CSV
    - use of lambda
-   - use of exception //just one for now
-   - events //soon
+   - use of exceptions
+   - events 
