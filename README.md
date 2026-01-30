@@ -16,3 +16,35 @@ Progress so far :
    - use of lambda
    - use of exceptions
    - events 
+
+Structure of program
+The program simulates a event-managing platform, With 2 types of events:
+   - Conferences
+   - Concerts
+
+the code contains the following classes. i will start with the most simple and work my way up
+1. Seat
+   - int id
+   - int row
+   - int column
+2. Location
+   - int id
+   - String city
+   - String street
+   - int number
+   - List <Seat> seats
+3. User (unused)
+   - int Id
+   - String FirstName
+   - String LastnName
+   - int Age
+   - enum Category (bronze, silver, gold)
+4. Event (Abstract)
+   - int id
+   - String description
+   - LocalTime time
+   - Location location
+   - double price
+5. Organization
+   - Map<int, Event> events
+
