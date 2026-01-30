@@ -17,7 +17,6 @@ Progress so far :
    - use of exceptions
    - events 
 
-Structure of program
 The program simulates a event-managing platform, With 2 types of events:
    - Conferences
    - Concerts
