@@ -14,6 +14,12 @@ class InvalidCsvException extends Exception
     }
 }
 
+interface ConferenceCsvListener
+{
+    void OnWritten(String filepath);
+}
+
+
 public class Conference extends Event {
 
     private final String name;
@@ -46,7 +52,7 @@ public class Conference extends Event {
         return super.toString() + "\nName: " + name + "\nProfessor: " + professor + "\nCatering: " + (hasCatering ? "Yes" : "No");
     }
 
-    public static void writeConference(String filepath, ArrayList<Conference> conferences) {
+    public static void writeConference(String filepath, ArrayList<Conference> conferences, ConferenceCsvListener listener) {
         String[] headers = {"Id", "Description", "Time", "Location", "Price", "Name", "Professor", "Catering included?"};
 
         try (FileWriter fileWriter = new FileWriter(filepath)) {
@@ -75,6 +81,10 @@ public class Conference extends Event {
                 fileWriter.append(c.getName()).append(';');
                 fileWriter.append(c.getProfessor()).append(';');
                 fileWriter.append(c.returnCatering()).append('\n');
+            }
+
+            if (listener != null) {
+                listener.OnWritten(filepath);
             }
 
         } catch (InvalidCsvException e) {

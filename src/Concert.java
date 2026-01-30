@@ -1,3 +1,4 @@
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -6,12 +7,18 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+//not creative I know, sue me
 class InvalidCsvExceptionConcert extends Exception
 {
     public InvalidCsvExceptionConcert (String m)
     {
         super(m);
     }
+}
+
+interface ConcertCsvListener
+{
+    void OnWritten(String filepath);
 }
 
 public class Concert extends Event {
@@ -61,7 +68,7 @@ public class Concert extends Event {
         return concerts.stream().filter(c -> c.getDuration() == durationMinutes).toList();
     }
 
-    public static void writeConcert(String filepath, ArrayList<Concert> concerts)
+    public static void writeConcert(String filepath, ArrayList<Concert> concerts, ConcertCsvListener listener)
     {
         String[] headers = {"Id", "Description", "Time", "Location", "Price", "Locaiton", "Artist", "Genre", "Seated?", "Duration in Minutes"};
 
@@ -98,6 +105,11 @@ public class Concert extends Event {
                 //changes int to String so it can be written into csv document or something
                 fileWriter.append(Integer.toString(c.getDuration())).append("\n");
             }
+
+            if (listener != null) {
+                listener.OnWritten(filepath);
+            }
+
         }
         catch (InvalidCsvExceptionConcert e)
         {

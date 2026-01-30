@@ -40,7 +40,13 @@ void main() {
     conferences.add(conference);
     conferences.add(conference2);
 
-    Conference.writeConference("conferences.csv", conferences);
+    //added event. When csv is written A message is sent to the user
+    Conference.writeConference("conferences.csv", conferences, new ConferenceCsvListener() {
+        @Override
+        public void OnWritten(String filepath) {
+            System.out.println("Wrote to csv conference");
+        }
+    });
 
     List<String> descriptions = Conference.getAllDescrption(conferences);
     System.out.println(descriptions);
@@ -79,8 +85,15 @@ void main() {
     ArrayList<Conference> loaded = Conference.ReadConference("conferences.csv");
     loaded.forEach(System.out::println);
 
+
     //writing concerts into csv
-    Concert.writeConcert("concerts.csv", concerts);
+    //added event. When csv is written A message is sent to the user
+    Concert.writeConcert("concerts.csv", concerts, new ConcertCsvListener() {
+        @Override
+        public void OnWritten(String filepath) {
+            System.out.println("Wrote to csv concert");
+        }
+    });
 
     ArrayList<Concert> loaded2 = Concert.ReadConcert("concerts.csv");
     loaded2.forEach(System.out::println);
