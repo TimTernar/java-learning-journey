@@ -1,4 +1,3 @@
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -6,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 //not creative I know, sue me
 class InvalidCsvExceptionConcert extends Exception
@@ -18,7 +18,7 @@ class InvalidCsvExceptionConcert extends Exception
 
 interface ConcertCsvListener
 {
-    void OnWritten(String filepath);
+    void OnWritten(String filepath, int rowsWritten);
 }
 
 public class Concert extends Event {
@@ -71,6 +71,7 @@ public class Concert extends Event {
     public static void writeConcert(String filepath, ArrayList<Concert> concerts, ConcertCsvListener listener)
     {
         String[] headers = {"Id", "Description", "Time", "Location", "Price", "Locaiton", "Artist", "Genre", "Seated?", "Duration in Minutes"};
+        int rowsWritten = 0;
 
         try (FileWriter fileWriter = new FileWriter(filepath))
         {
@@ -104,10 +105,12 @@ public class Concert extends Event {
                 fileWriter.append(c.getSeated()).append(";");
                 //changes int to String so it can be written into csv document or something
                 fileWriter.append(Integer.toString(c.getDuration())).append("\n");
+
+                ++rowsWritten;
             }
 
             if (listener != null) {
-                listener.OnWritten(filepath);
+                listener.OnWritten(filepath,rowsWritten);
             }
 
         }
@@ -176,4 +179,5 @@ public class Concert extends Event {
         return new Location(locId, city, street, number);
     }
 
+    //method for writing into log
 }

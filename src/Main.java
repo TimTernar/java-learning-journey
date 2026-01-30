@@ -40,7 +40,7 @@ void main() {
     conferences.add(conference);
     conferences.add(conference2);
 
-    //added event. When csv is written A message is sent to the user
+    //added event. When csv is written A message is sent
     Conference.writeConference("conferences.csv", conferences, new ConferenceCsvListener() {
         @Override
         public void OnWritten(String filepath) {
@@ -87,7 +87,6 @@ void main() {
 
 
     //writing concerts into csv
-    //added event. When csv is written A message is sent to the user
     Concert.writeConcert("concerts.csv", concerts, new ConcertCsvListener() {
         @Override
         public void OnWritten(String filepath) {
